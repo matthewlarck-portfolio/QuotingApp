@@ -1,32 +1,15 @@
 {
   "name": "quoting-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test:e2e": "playwright test",
-    "test:smoke": "playwright test --grep @smoke",
-    "test:regression": "playwright test --grep @regression",
-    "test:headed": "playwright test --headed",
-    "test:ui": "playwright test --ui",
-    "test:report": "playwright show-report"
+    "start": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "deploy": "cd frontend && npm run build && firebase deploy"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matthewlarck-portfolio/QuotingApp.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/matthewlarck-portfolio/QuotingApp/issues"
-  },
-  "homepage": "https://github.com/matthewlarck-portfolio/QuotingApp#readme",
-  "devDependencies": {
-    "@playwright/test": "^1.59.1",
-    "@types/node": "^25.6.0",
-    "dotenv": "^17.4.2",
-    "firebase-admin": "^13.8.0"
-  }
+  "license": "ISC"
 }

@@ -23,7 +23,8 @@ const QuotingPage = () => {
   const [fabricColorOptions, setFabricColorOptions] = useState([]);
   const [selectedFabricColorOption, setSelectedFabricColorOption] = useState('');
   const [productsData, setProductsData] = useState([]);
-  const [pricingRules, setPricingRules] = useState(new Map()); // Use Map for pricing rules
+  // eslint-disable-next-line
+  const [pricingRules, setPricingRules] = useState(new Map());
   const [width, setWidth] = useState('');
   const [height, setHeight] = useState('');
   const navigate = useNavigate(); // ✅ Enables navigation
@@ -459,16 +460,10 @@ const handleAddMoreItems = () => {
   resetAllInputs(); // ✅ Reset form but keep the current quote
 };
 
-
 const handleCategoryChange = (e) => {
   const newCategory = e.target.value;
-  console.log("📌 Selected Category Changed:", newCategory);
 
   setSelectedCategory(newCategory);
-  setSelectedProduct(""); // ✅ Reset product selection when category changes
-  setFabricCollectionOptions([]); // ✅ Reset fabric options
-  setFabricColorOptions([]);
-  setValidationErrors({}); // ✅ Reset all validation errors
   setSelectedProduct("");
   setSelectedFabricOption("");
   setSelectedFabricColorOption("");
@@ -476,13 +471,8 @@ const handleCategoryChange = (e) => {
   setFabricColorOptions([]);
   setPricingRules(new Map());
   setTotalPrice(0);
-  setValidationErrors({});};
-
-// Debug: Check if selectedCategory is actually changing
-useEffect(() => {
-}, [selectedCategory]);
-
-
+  setValidationErrors({});
+};
 
 
 const handleProductChange = (e) => {
@@ -829,10 +819,13 @@ const fetchPricingRules = async (selectedProductData) => {
 };
 
 
-
 useEffect(() => {
-  const widthInches =
-    isNaN(parseFloat(width)) ? 0 : parseFloat(width);
+  if (
+    minMaxDimensions.minWidth === null ||
+    minMaxDimensions.maxWidth === null
+  ) return;
+
+  const widthInches = isNaN(parseFloat(width)) ? 0 : parseFloat(width);
 
   if (
     widthInches < minMaxDimensions.minWidth ||
@@ -849,10 +842,14 @@ useEffect(() => {
     });
   }
 }, [width, minMaxDimensions]);
-  
-  useEffect(() => {
-  const heightInches =
-    isNaN(parseFloat(height)) ? 0 : parseFloat(height);
+
+useEffect(() => {
+  if (
+    minMaxDimensions.minHeight === null ||
+    minMaxDimensions.maxHeight === null
+  ) return;
+
+  const heightInches = isNaN(parseFloat(height)) ? 0 : parseFloat(height);
 
   if (
     heightInches < minMaxDimensions.minHeight ||
@@ -860,7 +857,7 @@ useEffect(() => {
   ) {
     setValidationErrors((prev) => ({
       ...prev,
-      height: `Height must be between ${minMaxDimensions.minHeight} and ${minMaxDimensions.maxHeight} inches.`,
+      height: `height must be between ${minMaxDimensions.minHeight} and ${minMaxDimensions.maxHeight} inches.`,
     }));
   } else {
     setValidationErrors((prev) => {
@@ -869,41 +866,7 @@ useEffect(() => {
     });
   }
 }, [height, minMaxDimensions]);
-  
 
-
-
-useEffect(() => {
-  if (!selectedProduct || pricingRules.size === 0) return;
-
-  const widthInches =
-    parseFloat(width || 0);
-
-  const heightInches =
-    parseFloat(height || 0);
-
-  const roundedWidth = Math.ceil(widthInches / 12) * 12;
-  const roundedHeight = Math.ceil(heightInches / 12) * 12;
-  const dimensionKey = `${roundedWidth}x${roundedHeight}`;
-
-  const basePrice = pricingRules.get(dimensionKey);
-
-  if (basePrice === undefined) {
-    setTotalPrice(0);
-    return;
-  }
-
-  const finalTotal = basePrice * quantity * costFactor;
-
-  setTotalPrice(finalTotal);
-}, [
-  selectedProduct,
-  width,
-  height,
-  pricingRules,
-  quantity,
-  costFactor,
-]);
 
   
   useEffect(() => {
