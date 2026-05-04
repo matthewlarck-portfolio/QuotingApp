@@ -11,13 +11,13 @@ import { getStorage } from "firebase/storage"; // ✅ Correct import
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA3yAXswNzlE_nVwE1Z97LzQJUh3PyUjSY",
-  authDomain: "designerblinds-c482a.firebaseapp.com",
-  projectId: "designerblinds-c482a",
-  storageBucket: "designerblinds-c482a.appspot.com",
-  messagingSenderId: "141452257923",
-  appId: "1:141452257923:web:74db6313db9391bc2949b6",
-  measurementId: "G-JJ77HVBTJX"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 
