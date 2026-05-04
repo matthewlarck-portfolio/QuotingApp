@@ -217,33 +217,29 @@ useEffect(() => {
 
 
 
+useEffect(() => {
+  const fetchUserData = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        const parsedCostFactor = parseFloat(userData.CostFactor);
+        setCostFactor(!isNaN(parsedCostFactor) ? parsedCostFactor : 1);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchUserData();
+}, []);
 
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        return;
-      }
-  
-      try {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-  
-        if (userSnap.exists()) {
-          const userData = userSnap.data();
-  
-          const parsedCostFactor = parseFloat(userData.CostFactor);
-          setCostFactor(!isNaN(parsedCostFactor) ? parsedCostFactor : 1);
-        } else {
-        }
-      } catch (error) {
-      }
-    };
-  
-    fetchUserData();
-  }); // Add navigate here if it's used inside the effect
-  
   const generateShortQuoteId = (id) => {
     return id.slice(-4); // Extracts the last 4 characters of the Firestore-generated ID
   };
@@ -473,8 +469,14 @@ const handleCategoryChange = (e) => {
   setFabricCollectionOptions([]); // ✅ Reset fabric options
   setFabricColorOptions([]);
   setValidationErrors({}); // ✅ Reset all validation errors
-  resetAllInputs(); // ✅ Reset form selections
-};
+  setSelectedProduct("");
+  setSelectedFabricOption("");
+  setSelectedFabricColorOption("");
+  setFabricCollectionOptions([]);
+  setFabricColorOptions([]);
+  setPricingRules(new Map());
+  setTotalPrice(0);
+  setValidationErrors({});};
 
 // Debug: Check if selectedCategory is actually changing
 useEffect(() => {
