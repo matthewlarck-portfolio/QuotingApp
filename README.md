@@ -1,20 +1,10 @@
-# Quoting App — QA Automation / SDET Portfolio Project
-
-[![Playwright Tests](https://github.com/matthewlarck-portfolio/QuotingApp/actions/workflows/playwright.yml/badge.svg)](https://github.com/matthewlarck-portfolio/QuotingApp/actions/workflows/playwright.yml)
+# Quoting App — B2B SaaS Application
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Portfolio project demonstrating junior SDET practices using Playwright, TypeScript, UI/API testing, and CI/CD automation with GitHub Actions.
+A real-world B2B SaaS quoting application built to support business workflows for generating and managing product quotes.
 
-This is a real-world B2B SaaS quoting application originally built for business use and now used as a live automation testing environment for test design, debugging, and continuous testing.
-
-The application includes workflows involving:
-
-- Authentication  
-- Quote creation  
-- Pricing logic  
-- Form validation  
-- Firestore data persistence
+Originally developed for practical use, this application now serves as a production-like environment for validating complex UI flows, pricing logic, and data persistence.
 
 ---
 
@@ -26,57 +16,37 @@ A demo account is available on the sign-in page.
 
 ---
 
+## Core Features
+
+* User authentication
+* Quote creation workflow
+* Dynamic product selection
+* Pricing logic based on dimensions
+* Form validation
+* Firestore data persistence
+* Quote management and retrieval
+
+---
+
 ## Tech Stack
 
-### Application
-- React  
-- Firebase Authentication  
-- Firestore  
-- Firebase Hosting
-
-### Test Automation
-- Playwright  
-- TypeScript  
-- End-to-End Testing  
-- API Testing (in progress)
-
-### CI/CD
-- GitHub Actions  
-- Test-gated deployment workflow
+* React
+* Firebase Authentication
+* Firestore
+* Firebase Hosting
 
 ---
 
-## Current Test Coverage
+## Architecture Overview
 
-Current automated coverage includes:
+The application is structured around a multi-step quote creation flow:
 
-- Authentication workflows  
-- Quote creation validation  
-- Required field validation  
-- Pricing section checks  
-- Critical-path smoke tests
+* Customer information input
+* Product and configuration selection
+* Dynamic pricing calculation
+* Quote persistence and retrieval
 
-Additional regression coverage in progress.
-
----
-
-## Test Architecture
-
-- Playwright Test Runner  
-- Reusable helper abstractions  
-- Page Object Model patterns (In Progress) 
-- Fixture-driven test setup  
-- Environment-based configuration  
-
-```text
-tests/
- ├── auth/
- └── quotes/
-
-utils/
-fixtures/
-.github/workflows/
-```
+State is managed across multiple components with asynchronous data loading from Firestore.
 
 ---
 
@@ -84,85 +54,82 @@ fixtures/
 
 ### Prerequisites
 
-- Node.js 20+
-- npm
-- Playwright browsers
+* Node.js 20+
+* npm
 
-### Clone repository
+---
+
+### Clone Repository
 
 ```bash
 git clone https://github.com/matthewlarck-portfolio/QuotingApp.git
 cd QuotingApp
 ```
 
-### Install root dependencies
+---
 
-```bash
-npm ci
-```
-
-### Install frontend dependencies
+### Install Dependencies
 
 ```bash
 cd frontend
 npm ci
 ```
 
-### Install Playwright browsers
+---
+
+### Run Development Server
 
 ```bash
-cd ..
-npx playwright install
-```
-
-### Start the development server
-
-```bash
-cd frontend
 npm start
 ```
 
-### Run tests (from project root)
-
-Open a second terminal:
+The app will be available at:
 
 ```bash
-# From project root
-npm run test:e2e
-npm run test:smoke
-npm run test:regression
+http://localhost:3000
 ```
 
-### Notes
+---
 
-- Local development currently uses a two-terminal workflow:
-  - Terminal 1 runs the React development server
-  - Terminal 2 runs Playwright tests
+## Deployment
 
-- GitHub Actions runs smoke and regression suites in CI.
+The application is deployed using Firebase Hosting.
 
-- Test credentials are managed through environment variables using:
+CI/CD is handled via GitHub Actions:
 
-```bash
-.env
-.env.example
-GitHub Actions secrets
-```
+* Builds the React application
+* Deploys to Firebase on successful build
+
+---
+
+## Testing
+
+End-to-end test automation is maintained in a separate repository:
+
+👉 https://github.com/matthewlarck-portfolio/playwright-quote-automation
+
+This separation reflects a real-world architecture where application code and automation frameworks are managed independently.
 
 ---
 
 ## Recent Improvements
 
-- Added smoke test tagging for critical workflows  
-- Refactored reusable helpers for auth and quote setup  
-- Investigating flaky add-item modal behavior  
-- Improving condition-based waits to reduce flakiness
+* Refactored quote page into modular components
+* Simplified product and pricing logic
+* Removed deprecated features and unused code
+* Improved form validation and state handling
 
 ---
 
 ## Roadmap
 
-- Expand regression coverage  
-- Add quote edit/delete coverage  
-- Expand API validation  
-- Continue reducing flaky behavior
+* Continue UI and state management improvements
+* Enhance quote editing workflows
+* Improve performance of dynamic data loading
+* Expand feature set for business use cases
+
+---
+
+## Notes
+
+This project reflects a transition from a business-focused application to a structured engineering project, emphasizing maintainability, scalability, and real-world workflows.
