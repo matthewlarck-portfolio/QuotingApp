@@ -2,6 +2,16 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+
+## Screenshots
+
+## Demo Application
+![Demo](./screenshots/1.png)
+![Demo](./screenshots/2.png)
+![Demo](./screenshots/3.png)
+![Demo](./screenshots/4.png)
+
+
 This project is a real-world B2B SaaS application that serves as a **System Under Test (SUT)** for validating end-to-end workflows, system behavior, and application reliability under realistic conditions.
 
 Originally built for business use, this application is now used to simulate real user workflows and support system-level testing through an external automation framework.
