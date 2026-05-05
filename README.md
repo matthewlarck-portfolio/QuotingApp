@@ -3,27 +3,6 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
-## Screenshots
-
-### Application Workflow (System Under Test)
-
-#### Quote Creation Flow
-![Quote Creation](./screenshots/1.png)
-
-#### Completed Quote with Data Persistence
-![Saved Quote](./screenshots/2.png)
-
----
-
-### System Behavior & Validation
-
-#### Form Validation & Error Handling
-![Validation](./screenshots/3.png)
-
-#### Pricing Logic & State Management
-![Pricing Logic](./screenshots/4.png)
-
-
 This project is a real-world B2B SaaS application that serves as a **System Under Test (SUT)** for validating end-to-end workflows, system behavior, and application reliability under realistic conditions.
 
 Originally built for business use, this application is now used to simulate real user workflows and support system-level testing through an external automation framework.
