@@ -1,80 +1,91 @@
-# Quoting App — QA Automation / SDET Portfolio Project
+# # Quoting App — System Under Test (SaaS Application)
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Portfolio project demonstrating junior SDET practices using Playwright, TypeScript, UI/API testing, and CI/CD automation with GitHub Actions.
+This project is a real-world B2B SaaS application that serves as a **System Under Test (SUT)** for validating end-to-end workflows, system behavior, and application reliability under realistic conditions.
 
-This is a real-world B2B SaaS quoting application originally built for business use and now used as a live automation testing environment for test design, debugging, and continuous testing.
+Originally built for business use, this application is now used to simulate real user workflows and support system-level testing through an external automation framework.
 
-The application includes workflows involving:
+---
 
-- Authentication  
-- Quote creation  
-- Pricing logic  
-- Form validation  
-- Firestore data persistence
+## Associated Test Automation Framework
+
+This application is validated by a separate system-level test automation framework:
+
+👉 https://github.com/matthewlarck-portfolio/playwright-quote-automation
+
+The framework performs:
+
+- End-to-end system validation across real user workflows  
+- Integration testing between UI, API, and database layers  
+- Continuous validation through CI/CD pipelines  
+
+This separation reflects a production-like architecture where the system and its validation framework are maintained independently.
 
 ---
 
 ## Live Demo
 
-https://designerblinds-c482a.web.app
+https://designerblinds-c482a.web.app  
 
 A demo account is available on the sign-in page.
 
 ---
 
-## Tech Stack
+## System Overview
 
-### Application
-- React  
+This application simulates real-world business workflows involving:
+
+- Authentication and session handling  
+- Quote creation and user input flows  
+- Pricing logic and calculations  
+- Form validation and error handling  
+- Firestore data persistence and retrieval  
+
+The system is designed to support testing of real user behavior, data integrity, and application reliability.
+
+---
+
+## System Architecture
+
+### Application (System Under Test)
+- React frontend  
 - Firebase Authentication  
-- Firestore  
-- Firebase Hosting
+- Firestore database  
+- Firebase Hosting  
 
-### Test Automation
-- Playwright  
-- TypeScript  
-- End-to-End Testing  
-- API Testing (in progress)
+### Test Framework (External Repository)
+- Playwright (TypeScript)  
+- CI/CD via GitHub Actions  
 
-### CI/CD
-- GitHub Actions  
-- Test-gated deployment workflow
+The test framework interacts with the deployed application to validate system behavior under real-world conditions.
 
 ---
 
-## Current Test Coverage
+## Engineering Focus
 
-Current automated coverage includes:
+This project emphasizes:
 
-- Authentication workflows  
-- Quote creation validation  
-- Required field validation  
-- Pricing section checks  
-- Critical-path smoke tests
+- System-level validation over isolated UI testing  
+- Integration testing across frontend, backend, and data layers  
+- Debugging and root cause analysis across application components  
+- Reliability and consistency of application behavior  
 
-Additional regression coverage in progress.
+Testing is designed to evaluate how the system behaves as a whole, not just individual components.
 
 ---
 
-## Test Architecture
+## Current Coverage (via External Test Framework)
 
-- Playwright Test Runner  
-- Reusable helper abstractions  
-- Page Object Model patterns (In Progress) 
-- Fixture-driven test setup  
-- Environment-based configuration  
+Automated validation currently focuses on:
 
-```text
-tests/
- ├── auth/
- └── quotes/
+- Authentication workflows and session management  
+- Quote creation and data persistence  
+- Required field validation and error handling  
+- Pricing logic validation and workflow state transitions  
+- Critical-path smoke tests for system stability  
 
-utils/
-fixtures/
-.github/workflows/
-```
+Additional regression and API validation coverage is in progress.
 
 ---
 
@@ -82,85 +93,20 @@ fixtures/
 
 ### Prerequisites
 
-- Node.js 20+
-- npm
-- Playwright browsers
+- Node.js 20+  
+- npm  
 
-### Clone repository
+---
+
+### Clone Repository
 
 ```bash
 git clone https://github.com/matthewlarck-portfolio/QuotingApp.git
 cd QuotingApp
-```
 
-### Install root dependencies
-
-```bash
 npm ci
-```
-
-### Install frontend dependencies
-
-```bash
 cd frontend
 npm ci
-```
 
-### Install Playwright browsers
-
-```bash
-cd ..
-npx playwright install
-```
-
-### Start the development server
-
-```bash
 cd frontend
 npm start
-```
-
-### Run tests (from project root)
-
-Open a second terminal:
-
-```bash
-# From project root
-npm run test:e2e
-npm run test:smoke
-npm run test:regression
-```
-
-### Notes
-
-- Local development currently uses a two-terminal workflow:
-  - Terminal 1 runs the React development server
-  - Terminal 2 runs Playwright tests
-
-- GitHub Actions runs smoke and regression suites in CI.
-
-- Test credentials are managed through environment variables using:
-
-```bash
-.env
-.env.example
-GitHub Actions secrets
-```
-
----
-
-## Recent Improvements
-
-- Added smoke test tagging for critical workflows  
-- Refactored reusable helpers for auth and quote setup  
-- Investigating flaky add-item modal behavior  
-- Improving condition-based waits to reduce flakiness
-
----
-
-## Roadmap
-
-- Expand regression coverage  
-- Add quote edit/delete coverage  
-- Expand API validation  
-- Continue reducing flaky behavior
